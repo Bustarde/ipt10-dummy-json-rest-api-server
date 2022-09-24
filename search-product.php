@@ -22,7 +22,7 @@ $client = new Client([
     <div class="container-fluid">
         <form method="POST" action="">
         <form class="d-flex" role="search">
-            <input class="form-control me-2" name="search" type="search" placeholder="Search a product" aria-label="Search">
+            <input class="form-control me-2" name="search" type="search"  placeholder="Search a product" aria-label="Search">
             <button class="btn btn-outline-success" name="submit" type="submit">Search</button>
         </form>
         </form>
@@ -54,7 +54,9 @@ if (isset($_POST['submit'])){
     <div class="card" style="width: 18rem;">
         <img src="<?php echo $objects['thumbnail']?>" class="card-img-top" alt="...">
         <div class="card-body">
-            <h4 class="card-title"><?php echo $objects['title'];?></h4>
+            <h4 class="card-title"><?php echo $objects['id'];?></h4>  
+            <h4 class="card-title"><?php echo $objects['brand'];?></h4>
+            <h5 class="card-title"><?php echo $objects['title'];?></h5>
             <h5 class="card-title"><?php echo $objects['category'];?></h5>
             <h6 class="card-title">$<?php echo $objects['price'];?></h6>
             <p class="card-text"><?php echo $objects['description'];?></p>

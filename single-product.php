@@ -28,11 +28,12 @@ $product = json_decode($body, true);
     <div class="card border-primary mx-auto" style="max-width: 22rem;">
         <img src="<?php echo $product['thumbnail']; ?>" class="card-img-top" alt="...">
         <div class="card-body">
-            <h4 class="card-title"><?php echo $product['title'];?></h4>
+            <h4 class="card-title"><?php echo $product['id'];?></h4>  
+            <h4 class="card-title"><?php echo $product['brand'];?></h4>
+            <h5 class="card-title"><?php echo $product['title'];?></h5>
             <h5 class="card-title"><?php echo $product['category'];?></h5>
             <h6 class="card-title">$<?php echo $product['price'];?></h6>
             <p class="card-text"><?php echo $product['description'];?></p>
-            <button type="button" class="btn btn-primary">Go</button>
         </div>
     </div>
 
