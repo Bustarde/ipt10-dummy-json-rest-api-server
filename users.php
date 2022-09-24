@@ -7,10 +7,10 @@ $client = new Client([
     'base_uri' => 'https://dummyjson.com/'
 ]);
 
-$response = $client->get('https://dummyjson.com/products');
+$response = $client->get('https://dummyjson.com/users');
 $code = $response->getStatusCode();
 $body = $response->getBody();
-$products = json_decode($body, true);
+$users = json_decode($body, true);
 ?>
 
 <!doctype html>
@@ -27,18 +27,24 @@ $products = json_decode($body, true);
         <div class="container text-center">
             <div class="row gap-3">
     <?php 
-            foreach($products as $things){
+            foreach($users as $things){
                 foreach($things as $objects){
-            ?>
-    
+          
+    $name = $objects['firstName'] . ' ' . $objects['lastName'];
+
+
+    ?>
+
     <div class="card" style="width: 18rem;">
-        <img src="<?php echo $objects['thumbnail']?>" class="card-img-top" alt="...">
+        <img src="<?php echo $objects['image']?>" class="card-img-top" alt="...">
         <div class="card-body">
-            <h4 class="card-title"><?php echo $objects['title'];?></h4>
-            <h5 class="card-title"><?php echo $objects['category'];?></h5>
-            <h6 class="card-title">$<?php echo $objects['price'];?></h6>
-            <p class="card-text"><?php echo $objects['description'];?></p>
-            <a href="single-product.php?product_id=<?php echo $objects['id']?> "class="btn btn-primary">Show Details</a>
+            <h4 class="card-title"><?php echo $name?></h4>
+            <p class="card-text"><?php echo $objects['age'];?></p>
+            <p class="card-text"><?php echo $objects['gender'];?></p>
+            <p class="card-text"><?php echo $objects['email'];?></p>
+            <p class="card-text"><?php echo $objects['phone'];?></p>
+            <p class="card-text"><?php echo $objects['bloodGroup'];?></p>
+            <a href="single-user.php?user_id=<?php echo $objects['id']?> "class="btn btn-primary">Show Details</a>
         </div>
     </div>
   <?php

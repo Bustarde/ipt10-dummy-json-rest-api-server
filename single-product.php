@@ -11,7 +11,7 @@ $id = $_GET['product_id'];
 $response = $client->get('https://dummyjson.com/products/' . $id);
 $code = $response->getStatusCode();
 $body = $response->getBody();
-$products = json_decode($body, true);
+$product = json_decode($body, true);
 ?>
 
 <!doctype html>
@@ -24,14 +24,15 @@ $products = json_decode($body, true);
   </head>
 
   <body>
- 
-        <img src="<?php echo $objects['thumbnail']?>" class="card-img-top" alt="...">
+    
+    <div class="card border-primary mx-auto" style="max-width: 22rem;">
+        <img src="<?php echo $product['thumbnail']; ?>" class="card-img-top" alt="...">
         <div class="card-body">
-            <h4 class="card-title"><?php echo $objects['title'];?></h4>
-            <h5 class="card-title"><?php echo $objects['category'];?></h5>
-            <h6 class="card-title">$<?php echo $objects['price'];?></h6>
-            <p class="card-text"><?php echo $objects['description'];?></p>
-            <a href="single-product.php?product_id=<?php echo $objects['id']?> "class="btn btn-primary">Go</a>
+            <h4 class="card-title"><?php echo $product['title'];?></h4>
+            <h5 class="card-title"><?php echo $product['category'];?></h5>
+            <h6 class="card-title">$<?php echo $product['price'];?></h6>
+            <p class="card-text"><?php echo $product['description'];?></p>
+            <button type="button" class="btn btn-primary">Go</button>
         </div>
     </div>
 

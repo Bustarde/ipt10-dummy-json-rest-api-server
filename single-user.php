@@ -7,10 +7,11 @@ $client = new Client([
     'base_uri' => 'https://dummyjson.com/'
 ]);
 
-$response = $client->get('https://dummyjson.com/products');
+$id = $_GET['user_id'];
+$response = $client->get('https://dummyjson.com/users/1' . $id);
 $code = $response->getStatusCode();
 $body = $response->getBody();
-$products = json_decode($body, true);
+$user = json_decode($body, true);
 ?>
 
 <!doctype html>
@@ -24,27 +25,22 @@ $products = json_decode($body, true);
 
   <body>
     
-        <div class="container text-center">
-            <div class="row gap-3">
-    <?php 
-            foreach($products as $things){
-                foreach($things as $objects){
-            ?>
-    
-    <div class="card" style="width: 18rem;">
-        <img src="<?php echo $objects['thumbnail']?>" class="card-img-top" alt="...">
+  <?php
+     $name = $user['firstName'] . ' ' . $user['lastName']; ?>
+
+    <div class="card border-primary mx-auto" style="max-width: 22rem;">
+        <img src="<?php echo $user['image']; ?>" class="card-img-top" alt="...">
         <div class="card-body">
-            <h4 class="card-title"><?php echo $objects['title'];?></h4>
-            <h5 class="card-title"><?php echo $objects['category'];?></h5>
-            <h6 class="card-title">$<?php echo $objects['price'];?></h6>
-            <p class="card-text"><?php echo $objects['description'];?></p>
-            <a href="single-product.php?product_id=<?php echo $objects['id']?> "class="btn btn-primary">Show Details</a>
+        <h4 class="card-title"><?php echo $name?></h4>
+            <p class="card-text"><?php echo $user['age'];?></p>
+            <p class="card-text"><?php echo $user['gender'];?></p>
+            <p class="card-text"><?php echo $user['email'];?></p>
+            <p class="card-text"><?php echo $user['phone'];?></p>
+            <p class="card-text"><?php echo $user['bloodGroup'];?></p>
+            <button type="button" class="btn btn-primary">Show Details</button>
         </div>
     </div>
-  <?php
-            }
-        }
-        ?>
+
 
     
 

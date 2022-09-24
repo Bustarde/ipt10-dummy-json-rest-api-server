@@ -7,10 +7,6 @@ $client = new Client([
     'base_uri' => 'https://dummyjson.com/'
 ]);
 
-$response = $client->get('https://dummyjson.com/products');
-$code = $response->getStatusCode();
-$body = $response->getBody();
-$products = json_decode($body, true);
 ?>
 
 <!doctype html>
@@ -23,8 +19,32 @@ $products = json_decode($body, true);
   </head>
 
   <body>
-    
-        <div class="container text-center">
+    <div class="container-fluid">
+        <form method="POST" action="">
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" name="search" type="search" placeholder="Search a product" aria-label="Search">
+            <button class="btn btn-outline-success" name="submit" type="submit">Search</button>
+        </form>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+
+<?php
+
+if (isset($_POST['submit'])){
+
+    $query = $_POST['search'];
+    $response = $client->get('https://dummyjson.com/products/search?q=' . $query);
+    $code = $response->getStatusCode();
+    $body = $response->getBody();
+    $products = json_decode($body, true);
+}
+
+?>
+
+  <div class="container text-center">
             <div class="row gap-3">
     <?php 
             foreach($products as $things){
@@ -46,8 +66,6 @@ $products = json_decode($body, true);
         }
         ?>
 
-    
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
   </body>
-</html>
+</html> 
